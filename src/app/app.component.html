@@ -1,0 +1,20 @@
+<ng-container *ngIf="(measurements | async) as meas">
+  <svg
+    #svgRect
+    [attr.width]="meas.width"
+    [attr.height]="meas.height"
+    style="border:1px solid red"
+    appResizableSvg
+    (perimeterChanged)="onPerimeterChanged($event)">
+  </svg>
+  <span>Perimeter: {{perimeter}} px</span>
+
+  <button
+    class="save-button"
+    mat-raised-button
+    (click)="saveMeasurements(
+            svgRect.getAttribute('width'),
+            svgRect.getAttribute('height'))">
+    Save
+  </button>
+</ng-container>
